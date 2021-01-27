@@ -123,7 +123,7 @@ import { User } from '../models/User';
 
 // abilities definition from previous example
 
-type DefinePermissions = (user: User, builder: AbilityBuilder<typeof AppAbility>) => void;
+type DefinePermissions = (user: User, builder: AbilityBuilder<AppAbility>) => void;
 type Roles = 'member' | 'admin';
 
 const rolePermissions: Record<Roles, DefinePermissions> = {
@@ -162,7 +162,7 @@ import { User } from '../models/User';
 // roles definition from the example above
 
 export function defineAbilityFor(user: User): AppAbility {
-  const builder = new AbilityBuilder(Ability);
+  const builder = new AbilityBuilder(AppAbility);
 
   if (typeof rolePermissions[user.role] === 'function') {
     rolePermissions[user.role](user, builder);
